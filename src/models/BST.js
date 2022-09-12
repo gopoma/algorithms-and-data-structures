@@ -13,18 +13,20 @@ class BST {
         try {
             this.root = this.#addNode(value, this.root);
             return {success: true};
-        } catch({message}) {
-            console.log(message);
-            return {success: false};
+        } catch ({message}) {
+            return {
+                success: false,
+                message
+            };
         }
     }
     #addNode(value, current) {
-        if(current === undefined) {
+        if (current === undefined) {
             current = new Node(value);
         } else {
-            if(value > current.value) {
+            if (value > current.value) {
                 current.right = this.#addNode(value, current.right);
-            } else if(value < current.value) {
+            } else if (value < current.value) {
                 current.left = this.#addNode(value, current.left);
             } else {
                 throw new Error("Can't insert a duplicate value!");
@@ -44,21 +46,23 @@ class BST {
         try {
             this.root = this.#deleteNode(value, this.root);
             return {success: true};
-        } catch({message}) {
-            console.log(message);
-            return {success: false};
+        } catch ({message}) {
+            return {
+                success: false,
+                message
+            };
         }
     }
     #deleteNode(value, current) {
-        if(current === undefined) {
+        if (current === undefined) {
             throw new Error("Not Found!");
         } else {
-            if(value > current.value) {
+            if (value > current.value) {
                 current.right = this.#deleteNode(value, current.right);
-            } else if(value < current.value) {
+            } else if (value < current.value) {
                 current.left = this.#deleteNode(value, current.left);
             } else {
-                if(current.left !== undefined && current.right !== undefined) {
+                if (current.left !== undefined && current.right !== undefined) {
                     const minRight = this.#getMinNodeValue(current.right);
                     current.value = minRight;
                     current.right = this.#deleteNode(minRight, current.right);
@@ -76,11 +80,11 @@ class BST {
     #preOrderNode(current) {
         let result = "";
         result += current.value + " ";
-        if(current.left !== undefined) {
+        if (current.left !== undefined) {
             const partial = this.#preOrderNode(current.left);
             result += partial.endsWith(" ") ? partial : partial + " ";
         }
-        if(current.right !== undefined) {
+        if (current.right !== undefined) {
             const partial = this.#preOrderNode(current.right);
             result += partial.endsWith(" ") ? partial : partial + " ";
         }
@@ -92,12 +96,12 @@ class BST {
     }
     #inOrderNode(current) {
         let result = "";
-        if(current.left !== undefined) {
+        if (current.left !== undefined) {
             const partial = this.#inOrderNode(current.left);
             result += partial.endsWith(" ") ? partial : partial + " ";
-        }   
+        }
         result += current.value + " ";
-        if(current.right !== undefined) {
+        if (current.right !== undefined) {
             const partial = this.#inOrderNode(current.right);
             result += partial.endsWith(" ") ? partial : partial + " ";
         }
@@ -109,11 +113,11 @@ class BST {
     }
     #postOrderNode(current) {
         let result = "";
-        if(current.left !== undefined) {
+        if (current.left !== undefined) {
             const partial = this.#postOrderNode(current.left);
             result += partial.endsWith(" ") ? partial : partial + " ";
         }
-        if(current.right !== undefined) {
+        if (current.right !== undefined) {
             const partial = this.#postOrderNode(current.right);
             result += partial.endsWith(" ") ? partial : partial + " ";
         }
@@ -122,31 +126,6 @@ class BST {
 }
 
 (() => {
-    const tree = new BST();
-    tree.add(4);
-    tree.add(2);
-    tree.add(1);
-    tree.add(3);
-    tree.add(5);
-    tree.add(6);
-    console.log("Tree 1:");
-    console.log(tree.preOrder());
-    console.log(tree.inOrder());
-    console.log(tree.postOrder());
-
-    const tree2 = new BST();
-    console.log("Tree 2:");
-    console.log(tree2.preOrder());
-    console.log(tree2.inOrder());
-    console.log(tree2.postOrder());
-
-    const tree3 = new BST();
-    tree3.add(16);
-    console.log("Tree 3:");
-    console.log(tree3.preOrder());
-    console.log(tree3.inOrder());
-    console.log(tree3.postOrder());
-
     const tree4 = new BST();
     tree4.add(4);
     tree4.add(2);
@@ -174,4 +153,6 @@ class BST {
     tree4.delete(200);
     tree4.add(2);
     tree4.add(3);
-})()
+})();
+
+module.exports = BST;
