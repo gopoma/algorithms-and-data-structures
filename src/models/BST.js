@@ -21,12 +21,12 @@ class BST {
         }
     }
     #addNode(value, current) {
-        if (current === undefined) {
+        if(current === undefined) {
             current = new Node(value);
         } else {
-            if (value > current.value) {
+            if(value > current.value) {
                 current.right = this.#addNode(value, current.right);
-            } else if (value < current.value) {
+            } else if(value < current.value) {
                 current.left = this.#addNode(value, current.left);
             } else {
                 throw new Error("Can't insert a duplicate value!");
@@ -54,15 +54,15 @@ class BST {
         }
     }
     #deleteNode(value, current) {
-        if (current === undefined) {
+        if(current === undefined) {
             throw new Error("Not Found!");
         } else {
-            if (value > current.value) {
+            if(value > current.value) {
                 current.right = this.#deleteNode(value, current.right);
-            } else if (value < current.value) {
+            } else if(value < current.value) {
                 current.left = this.#deleteNode(value, current.left);
             } else {
-                if (current.left !== undefined && current.right !== undefined) {
+                if(current.left !== undefined && current.right !== undefined) {
                     const minRight = this.#getMinNodeValue(current.right);
                     current.value = minRight;
                     current.right = this.#deleteNode(minRight, current.right);
@@ -80,11 +80,11 @@ class BST {
     #preOrderNode(current) {
         let result = "";
         result += current.value + " ";
-        if (current.left !== undefined) {
+        if(current.left !== undefined) {
             const partial = this.#preOrderNode(current.left);
             result += partial.endsWith(" ") ? partial : partial + " ";
         }
-        if (current.right !== undefined) {
+        if(current.right !== undefined) {
             const partial = this.#preOrderNode(current.right);
             result += partial.endsWith(" ") ? partial : partial + " ";
         }
@@ -96,12 +96,12 @@ class BST {
     }
     #inOrderNode(current) {
         let result = "";
-        if (current.left !== undefined) {
+        if(current.left !== undefined) {
             const partial = this.#inOrderNode(current.left);
             result += partial.endsWith(" ") ? partial : partial + " ";
         }
         result += current.value + " ";
-        if (current.right !== undefined) {
+        if(current.right !== undefined) {
             const partial = this.#inOrderNode(current.right);
             result += partial.endsWith(" ") ? partial : partial + " ";
         }
@@ -113,11 +113,11 @@ class BST {
     }
     #postOrderNode(current) {
         let result = "";
-        if (current.left !== undefined) {
+        if(current.left !== undefined) {
             const partial = this.#postOrderNode(current.left);
             result += partial.endsWith(" ") ? partial : partial + " ";
         }
-        if (current.right !== undefined) {
+        if(current.right !== undefined) {
             const partial = this.#postOrderNode(current.right);
             result += partial.endsWith(" ") ? partial : partial + " ";
         }

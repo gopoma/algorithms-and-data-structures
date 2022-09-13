@@ -13,11 +13,4 @@ function bfmatching(text, pattern) {
     return false;
 }
 
-(() => {
-    console.log(bfmatching("A good framework", "good")); // true
-    console.log(bfmatching("A good framework", "god")); // false
-    console.log(bfmatching("Programming with C++ is like shooting oneself", "++")); // true
-    console.log(bfmatching("Programming with C++ is like shooting oneself", "F++")); // false
-    console.log(bfmatching("Something", "ing")); // true
-    console.log(bfmatching("Something", "ingx")); // false
-})()
+module.exports = bfmatching;
