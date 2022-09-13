@@ -4,7 +4,7 @@
   "description": "A collection of algorithms and data structures implemented in the runtime Node.js",
   "main": "./src/index.js",
   "scripts": {
-    "test": "npx mocha"
+    "test": "npx mocha ./src/test/**/*.js"
   },
   "keywords": [],
   "author": "gopoma",
