@@ -75,7 +75,7 @@ class BST {
     }
 
     preOrder() {
-        return this.root !== undefined ? this.#preOrderNode(this.root) : "There are no Nodes!";
+        return this.root !== undefined ? this.#preOrderNode(this.root).trim() : "There are no Nodes!";
     }
     #preOrderNode(current) {
         let result = "";
@@ -92,7 +92,7 @@ class BST {
     }
 
     inOrder() {
-        return this.root !== undefined ? this.#inOrderNode(this.root) : "There are no Nodes!";
+        return this.root !== undefined ? this.#inOrderNode(this.root).trim() : "There are no Nodes!";
     }
     #inOrderNode(current) {
         let result = "";
@@ -109,7 +109,7 @@ class BST {
     }
 
     postOrder() {
-        return this.root !== undefined ? this.#postOrderNode(this.root) : "There are no Nodes!";
+        return this.root !== undefined ? this.#postOrderNode(this.root).trim() : "There are no Nodes!";
     }
     #postOrderNode(current) {
         let result = "";
@@ -124,35 +124,5 @@ class BST {
         return result + current.value + " ";
     }
 }
-
-(() => {
-    const tree4 = new BST();
-    tree4.add(4);
-    tree4.add(2);
-    tree4.add(1);
-    tree4.add(0);
-    tree4.add(1.5);
-    tree4.add(1.32);
-    tree4.add(3);
-    tree4.add(2.5);
-    tree4.add(2.8);
-    tree4.add(2.56);
-    tree4.add(2.95);
-    tree4.add(3.5);
-    tree4.add(5);
-    tree4.add(6);
-    tree4.add(7);
-
-    console.log("Tree 4:");
-    console.log(tree4.preOrder());
-    console.log(tree4.inOrder());
-    console.log(tree4.postOrder());
-
-    tree4.delete(2);
-    console.log(tree4.preOrder());
-    tree4.delete(200);
-    tree4.add(2);
-    tree4.add(3);
-})();
 
 module.exports = BST;
