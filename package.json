@@ -1,15 +1,17 @@
 {
   "name": "algorithms-and-data-structures",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "directories": {
-    "test": "test"
-  },
+  "description": "A collection of algorithms and data structures implemented in the runtime Node.js",
+  "main": "./src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx mocha"
   },
   "keywords": [],
   "author": "gopoma",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^4.3.6",
+    "eslint": "^8.23.1",
+    "mocha": "^10.0.0"
+  }
 }
