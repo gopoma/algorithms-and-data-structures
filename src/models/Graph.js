@@ -1,3 +1,17 @@
+class Color {
+    static WHITE = 0;
+    static GREY = 1;
+    static BLACK = 2;
+
+    static initializeColor(vertices) {
+        const color = {};
+        vertices.forEach(v => {
+            color[v] = Color.WHITE;
+        });
+        return color;
+    }
+}
+
 class Graph {
     constructor(isDirected = false) {
         this.isDirected = isDirected;
@@ -47,6 +61,55 @@ class Graph {
         });
         return s;
     }
+
+    static breadthFirstSearch(graph, startVertex, callback) {
+        const vertices = graph.getVertices();
+        const adjList = graph.getAdjList();
+        const color = Color.initializeColor(vertices);
+        const queue = [];
+
+        queue.push(startVertex);
+
+        while(queue.length !== 0) {
+            const u = queue.shift();
+            const neighbors = adjList.get(u);
+            color[u] = Color.GREY;
+
+            neighbors.forEach((w) => {
+                if(color[w] === Color.WHITE) {
+                    color[w] = Color.GRAY;
+                    queue.push(w);
+                }
+            });
+
+            color[u] = Color.BLACK;
+            if(callback) {
+                callback(u);
+            }
+        }
+    }
 }
+
+(() => {
+    const graph = new Graph();
+    const myVertices = ["A", "B", "C", "D", "E", "F", "G", "H", "I"];
+    myVertices.forEach((v) => {
+        graph.addVertex(v);
+    });
+
+    graph.addEdge("A", "B");
+    graph.addEdge("A", "C");
+    graph.addEdge("A", "D");
+    graph.addEdge("C", "D");
+    graph.addEdge("C", "G");
+    graph.addEdge("D", "G");
+    graph.addEdge("D", "H");
+    graph.addEdge("B", "E");
+    graph.addEdge("B", "F");
+    graph.addEdge("E", "I");
+
+    const printVertex = (value) => console.log("Visited vertex: "+value);
+    Graph.breadthFirstSearch(graph, myVertices[0], printVertex);
+})();
 
 module.exports = Graph;
