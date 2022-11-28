@@ -1,7 +1,7 @@
 // Estudiante: Gustavo Eduardo ORDOÑO POMA
 // CUI: 20213036
-// Laboratorio04 - Técnicas de Diseño de Algoritmos – Algoritmo de Strassen
-// Fecha: 23/10/2022
+// Análisis y Diseño de Algoritmos - Segundo Examen Parcial
+// Fecha: 15/11/2022
 
 #include <iostream>
 #include <cstddef>
